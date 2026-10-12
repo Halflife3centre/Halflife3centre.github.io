@@ -118,18 +118,18 @@
             z-index: 2;
         }
 
-        .hero-logo {
+        /* Loggan i mitten av herosektionen (lagom storlek) */
+        .hero-logo-container {
             position: relative;
             z-index: 3;
             text-align: center;
-            font-size: 3.5rem;
-            font-weight: bold;
-            color: #ff6600;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            border: 4px solid #ff6600;
-            padding: 20px 40px;
-            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-logo-img {
+            max-width: 300px; /* Gör den lagom stor */
+            width: 70vw;
+            height: auto;
+            filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.8));
         }
 
         .scroll-hint {
@@ -174,8 +174,9 @@
         <div class="hero-background" id="heroBg"></div>
         <div class="hero-overlay"></div>
         
-        <div class="hero-logo">
-            HL3 LOGO
+        <!-- Din logotyp i mitten -->
+        <div class="hero-logo-container">
+            <img src="5512.png" alt="Half Life 3 Centre Logo" class="hero-logo-img">
         </div>
 
         <div class="scroll-hint">
