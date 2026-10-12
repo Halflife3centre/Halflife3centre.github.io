@@ -94,13 +94,14 @@
             align-items: center;
         }
 
+        /* Bakgrundsbild som förstoras vid skroll */
         .hero-background {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #1b4332;
+            background-image: url('5516.jpg');
             background-size: cover;
             background-position: center;
             transition: transform 0.1s ease-out;
@@ -114,11 +115,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.45); /* Toning för god kontrast */
             z-index: 2;
         }
 
-        /* Loggan i mitten av herosektionen (lagom storlek) */
+        /* Loggan i mitten av herosektionen */
         .hero-logo-container {
             position: relative;
             z-index: 3;
@@ -126,10 +127,10 @@
         }
 
         .hero-logo-img {
-            max-width: 300px; /* Gör den lagom stor */
+            max-width: 300px;
             width: 70vw;
             height: auto;
-            filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.8));
+            filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.9));
         }
 
         .scroll-hint {
@@ -140,6 +141,7 @@
             color: #cccccc;
             letter-spacing: 2px;
             text-transform: uppercase;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.8);
         }
 
         .content-section {
@@ -162,7 +164,7 @@
     <!-- INTROANIMATIONEN -->
     <div class="intro-screen">
         <div class="intro-container">
-            <img src="5512.png" alt="Half Life 3 Centre Logo" class="intro-logo">
+            <img src="5512.png" alt="Half Life 3 Centre Logo" class="intro-logo">[span_2](start_span)[span_2](end_span)
         </div>
         <div class="welcome-container">
             Welcome to <span>Half life 3 Centre!</span>
@@ -176,7 +178,7 @@
         
         <!-- Din logotyp i mitten -->
         <div class="hero-logo-container">
-            <img src="5512.png" alt="Half Life 3 Centre Logo" class="hero-logo-img">
+            <img src="5512.png" alt="Half Life 3 Centre Logo" class="hero-logo-img">[span_3](start_span)[span_3](end_span)
         </div>
 
         <div class="scroll-hint">
