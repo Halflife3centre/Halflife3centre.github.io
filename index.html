@@ -125,9 +125,21 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* Ger en mjukare tona-ut mot botten av bilden */
-            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.85) 100%);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.9) 100%);
             z-index: 2;
+        }
+
+        /* Ambient Lighting / Glödande ljuslinje längst ner på bilden */
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(to bottom, transparent, rgba(255, 102, 0, 0.3));
+            pointer-events: none;
+            z-index: 4;
         }
 
         .hero-logo-container {
@@ -161,11 +173,10 @@
             text-shadow: 0 2px 8px rgba(0,0,0,0.8);
         }
 
-        /* --- INNEHÅLLSKONTROLL MED AMBIENT GLOW --- */
+        /* --- INNEHÅLLSKONTROLL MED GRADIENT --- */
         .content-section {
             position: relative;
             z-index: 10;
-            /* Mjuk övergång från mörkt till glödande orange */
             background: linear-gradient(to bottom, 
                 #0a0705 0%, 
                 #1f120a 35%, 
@@ -216,9 +227,9 @@
         </div>
     </section>
 
-    <!-- NÄSTA DEL AV SIDAN MED AMBIENT LIGHTING -->
+    <!-- NÄSTA DEL AV SIDAN -->
     <section class="content-section">
-        <h2>Senaste nyheterna om Half-Life 3</h2>
+        <h2>Latest news about Half-Life 3</h2>
         <p>Här kommer nyhetsflödet och uppdateringarna att ligga!</p>
     </section>
 
