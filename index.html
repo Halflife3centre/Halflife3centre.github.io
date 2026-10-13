@@ -160,19 +160,19 @@
             text-shadow: 0 2px 8px rgba(0,0,0,0.8);
         }
 
-        /* --- INNEHÅLLSDEL SOM OVERGÅR TILL HELORANGE --- */
+        /* --- NYHETSSEKTION & FLIKAR (TABS) --- */
         .content-section {
             position: relative;
             z-index: 10;
             background: linear-gradient(to bottom, 
                 #22252a 0%, 
-                #1a120c 25%, 
-                #5e2303 55%, 
-                #a33a00 80%, 
+                #1a120c 30%, 
+                #5e2303 65%, 
+                #a33a00 88%, 
                 #ff6600 100%
             );
-            padding: 120px 20px 100px 20px;
-            min-height: 100vh;
+            padding: 100px 20px 80px 20px;
+            min-height: 120vh;
             text-align: center;
         }
 
@@ -188,19 +188,88 @@
             z-index: 2;
         }
 
-        .content-section h2 {
+        .section-title {
             position: relative;
             z-index: 3;
             color: #ffffff;
             font-size: 2.5rem;
+            margin-bottom: 30px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.6);
         }
 
-        .content-section p {
+        /* Flik-knappar */
+        .tabs-container {
             position: relative;
             z-index: 3;
-            color: #e0e0e0;
-            font-size: 1.1rem;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .tab-btn {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #cccccc;
+            border: 2px solid rgba(255, 102, 0, 0.4);
+            padding: 10px 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tab-btn:hover {
+            border-color: #ff6600;
+            color: #ffffff;
+        }
+
+        .tab-btn.active {
+            background-color: #ff6600;
+            color: #000000;
+            border-color: #ff6600;
+        }
+
+        /* Innehåll för flikarna */
+        .tab-pane {
+            display: none;
+            position: relative;
+            z-index: 3;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        .news-card {
+            background-color: rgba(0, 0, 0, 0.6);
+            border-left: 4px solid #ff6600;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        .news-card h3 {
+            margin-top: 0;
+            color: #ff6600;
+            font-size: 1.3rem;
+        }
+
+        .news-card p {
+            color: #dddddd;
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .news-date {
+            font-size: 0.85rem;
+            color: #888888;
         }
 
         /* --- HELORANGE SIDFOT (FOOTER) --- */
@@ -300,10 +369,48 @@
         </div>
     </section>
 
-    <!-- NÄSTA DEL AV SIDAN -->
+    <!-- NYHETSSEKTION MED FLIKAR -->
     <section class="content-section">
-        <h2>Latest news about Half-Life 3</h2>
-        <p>Här kommer nyhetsflödet och uppdateringarna att ligga!</p>
+        <h2 class="section-title">Latest news about Half-Life 3</h2>
+
+        <!-- Flik-knappar -->
+        <div class="tabs-container">
+            <button class="tab-btn active" onclick="switchTab(event, 'news-pane')">Nyheter</button>
+            <button class="tab-btn" onclick="switchTab(event, 'youtube-pane')">YouTube</button>
+            <button class="tab-btn" onclick="switchTab(event, 'x-pane')">X (Twitter)</button>
+        </div>
+
+        <!-- Flik 1: Nyheter -->
+        <div id="news-pane" class="tab-pane active">
+            <div class="news-card">
+                <h3>Välkommen till Half-Life 3 Centre!</h3>
+                <p>Sajten är nu uppdaterad med en ny läcker design och stämningsfulla färgövergångar.</p>
+                <span class="news-date">Idag</span>
+            </div>
+            <div class="news-card">
+                <h3>Spekulationerna fortsätter</h3>
+                <p>Inga officiella nyheter från Valve än, men fansen håller hoppet vid liv som vanligt.</p>
+                <span class="news-date">Igår</span>
+            </div>
+        </div>
+
+        <!-- Flik 2: YouTube -->
+        <div id="youtube-pane" class="tab-pane">
+            <div class="news-card">
+                <h3>Valve nyheter & videor</h3>
+                <p>Här kommer de senaste klippen och analyserna från YouTube att dyka upp.</p>
+                <span class="news-date">Uppdateras automatiskt</span>
+            </div>
+        </div>
+
+        <!-- Flik 3: X (Twitter) -->
+        <div id="x-pane" class="tab-pane">
+            <div class="news-card">
+                <h3>Följ @Half_Life_III på X</h3>
+                <p>Håll dig uppdaterad med de senaste memesen och inläggen direkt från flödet.</p>
+                <span class="news-date">Direktflöde</span>
+            </div>
+        </div>
     </section>
 
     <!-- HELORANGE SIDFOT -->
@@ -323,8 +430,9 @@
         </div>
     </footer>
 
-    <!-- SCRIPT FÖR ATT FÖRSTORA BAKGRUNDEN VID SKROLL -->
+    <!-- SKRIPT FÖR SKROLL & FLIKAR -->
     <script>
+        // Bakgrundsförstoring vid skroll
         const heroBg = document.getElementById('heroBg');
 
         window.addEventListener('scroll', () => {
@@ -335,6 +443,18 @@
                 heroBg.style.transform = `scale(${scaleValue})`;
             }
         });
+
+        // Funktion för att växla mellan flikar
+        function switchTab(evt, paneId) {
+            const panes = document.querySelectorAll('.tab-pane');
+            panes.forEach(pane => pane.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(paneId).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
     </script>
 
 </body>
