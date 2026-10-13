@@ -111,7 +111,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('5516.jpg');
+            background-image: url('5516.jpg');[cite: 5]
             background-size: cover;
             background-position: center;
             transition: transform 0.1s ease-out;
@@ -125,8 +125,21 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.3); /* Ren och fin mörkläggning för att loggan ska synas */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0.6) 100%);
             z-index: 2;
+        }
+
+        /* Vitt ambient sken längst ner som sträcker sig nedåt */
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 130px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.35) 60%, rgba(255, 255, 255, 0.75) 100%);
+            pointer-events: none;
+            z-index: 4;
         }
 
         .hero-logo-container {
@@ -160,23 +173,20 @@
             text-shadow: 0 2px 8px rgba(0,0,0,0.8);
         }
 
-        /* --- INNEHÅLLSKONTROLL MED AMBIENT GLOW I KANTEN --- */
+        /* --- INNEHÅLLSKONTROLL MED GRADIENT --- */
         .content-section {
             position: relative;
             z-index: 10;
-            /* Övergång från mörkt till djupt orange */
             background: linear-gradient(to bottom, 
-                #121212 0%, 
-                #261003 30%, 
-                #5c1f02 65%, 
-                #9e3800 88%, 
+                #1a1a1a 0%, 
+                #2a1608 30%, 
+                #5e2303 65%, 
+                #a33a00 88%, 
                 #ff6600 100%
             );
             padding: 100px 20px;
             min-height: 120vh;
             text-align: center;
-            /* Skapar ett mjukt, glödande ambient ljus uppåt i skarven */
-            box-shadow: 0 -25px 50px rgba(255, 102, 0, 0.25);
         }
 
         .content-section h2 {
@@ -196,7 +206,7 @@
     <!-- INTROANIMATIONEN -->
     <div class="intro-screen">
         <div class="intro-container">
-            <img src="5512.png" alt="Half Life 3 Centre Logo" class="intro-logo">
+            <img src="5512.png" alt="Half Life 3 Centre Logo" class="intro-logo">[cite: 1]
         </div>
         <div class="welcome-container">
             Welcome to <span>Half life 3 Centre!</span>
@@ -209,7 +219,7 @@
         <div class="hero-overlay"></div>
         
         <div class="hero-logo-container">
-            <img src="5512.png" alt="Half Life 3 Centre Logo" class="hero-logo-img">
+            <img src="5512.png" alt="Half Life 3 Centre Logo" class="hero-logo-img">[cite: 1]
         </div>
 
         <div class="scroll-hint">
