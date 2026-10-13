@@ -494,17 +494,13 @@
             <button class="tab-btn" onclick="switchTab(event, 'x-pane')">X (Twitter)</button>
         </div>
 
-        <!-- Flik 1: Nyheter -->
+        <!-- Flik 1: Nyheter (Laddas dynamiskt från news.json) -->
         <div id="news-pane" class="tab-pane active">
-            <div class="news-card">
-                <h3>Välkommen till Half-Life 3 Centre!</h3>
-                <p>Sajten är nu uppdaterad med en ny läcker design och stämningsfulla färgövergångar.</p>
-                <span class="news-date">Idag</span>
-            </div>
-            <div class="news-card">
-                <h3>Spekulationerna fortsätter</h3>
-                <p>Inga officiella nyheter från Valve än, men fansen håller hoppet vid liv som vanligt.</p>
-                <span class="news-date">Igår</span>
+            <div id="news-container">
+                <div class="news-card">
+                    <h3>Laddar nyheter...</h3>
+                    <p>Hämtar den senaste informationen från databasen.</p>
+                </div>
             </div>
         </div>
 
@@ -696,7 +692,7 @@
         </div>
     </footer>
 
-    <!-- SKRIPT FÖR SKROLL & FLIKAR -->
+    <!-- SKRIPT FÖR SKROLL, FLIKAR OCH AUTOMATISK JSON-INLÄSNING -->
     <script>
         // Bakgrundsförstoring vid skroll
         const heroBg = document.getElementById('heroBg');
@@ -721,6 +717,41 @@
             document.getElementById(paneId).classList.add('active');
             evt.currentTarget.classList.add('active');
         }
+
+        // Hämta nyheter automatiskt från news.json när sidan laddas
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch('news.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Kunde inte läsa nyhetsfilen');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const container = document.getElementById('news-container');
+                    container.innerHTML = ''; // Rensa laddningsmeddelandet
+                    
+                    data.forEach(item => {
+                        const card = document.createElement('div');
+                        card.className = 'news-card';
+                        card.innerHTML = `
+                            <h3>${item.title}</h3>
+                            <p>${item.content}</p>
+                            <span class="news-date">${item.date}</span>
+                        `;
+                        container.appendChild(card);
+                    });
+                })
+                .catch(error => {
+                    console.error('Fel vid hämtning av nyheter:', error);
+                    document.getElementById('news-container').innerHTML = `
+                        <div class="news-card">
+                            <h3>Inga nyheter hittades</h3>
+                            <p>Kunde inte ladda nyhetsflödet just nu.</p>
+                        </div>
+                    `;
+                });
+        });
     </script>
 
 </body>
