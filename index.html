@@ -125,7 +125,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.45);
+            /* Ger en mjukare tona-ut mot botten av bilden */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.85) 100%);
             z-index: 2;
         }
 
@@ -160,16 +161,16 @@
             text-shadow: 0 2px 8px rgba(0,0,0,0.8);
         }
 
-        /* --- INNEHÅLLSKONTROLL MED GRADIENT (FRÅN MÖRKT TILL ORANGE) --- */
+        /* --- INNEHÅLLSKONTROLL MED AMBIENT GLOW --- */
         .content-section {
             position: relative;
             z-index: 10;
-            /* Denna gradient skapar övergången från mörkt/svart till djupt orange och brinnande glöd */
+            /* Mjuk övergång från mörkt till glödande orange */
             background: linear-gradient(to bottom, 
-                #121212 0%, 
-                #1f120a 30%, 
-                #4a1c02 60%, 
-                #8f3200 85%, 
+                #0a0705 0%, 
+                #1f120a 35%, 
+                #4a1c02 65%, 
+                #8f3200 88%, 
                 #ff6600 100%
             );
             padding: 100px 20px;
@@ -211,14 +212,14 @@
         </div>
 
         <div class="scroll-hint">
-            Scroll down ↓
+            Skrolla ner ↓
         </div>
     </section>
 
-    <!-- NÄSTA DEL AV SIDAN MED ORANGE GLÖD-GRADIENT -->
+    <!-- NÄSTA DEL AV SIDAN MED AMBIENT LIGHTING -->
     <section class="content-section">
-        <h2>Latest news about Half-Life 3</h2>
-        <p>Here is all the uptates and new gonna be!</p>
+        <h2>Senaste nyheterna om Half-Life 3</h2>
+        <p>Här kommer nyhetsflödet och uppdateringarna att ligga!</p>
     </section>
 
     <!-- SCRIPT FÖR ATT FÖRSTORA BAKGRUNDEN VID SKROLL -->
