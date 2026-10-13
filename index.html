@@ -386,7 +386,7 @@
             transform: scale(1.03);
         }
 
-        /* --- HELORANGE SIDFOT (FOOTER) --- */
+        /* --- HELORANGE SIDFOT --- */
         .site-footer {
             background-color: #ff6600;
             color: #ffffff;
@@ -431,10 +431,11 @@
             color: rgba(255, 255, 255, 0.85);
         }
 
+        /* Till-toppen-knapp med orange pil */
         .back-to-top {
             background-color: #000000;
-            color: #ffffff;
-            border: none;
+            color: #ff6600;
+            border: 2px solid rgba(255, 102, 0, 0.3);
             width: 44px;
             height: 44px;
             border-radius: 50%;
@@ -443,12 +444,13 @@
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
-            transition: transform 0.2s ease, background-color 0.2s ease;
+            transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
         }
 
         .back-to-top:hover {
             transform: translateY(-3px);
             background-color: #1a1a1a;
+            border-color: #ff6600;
         }
     </style>
 </head>
@@ -670,7 +672,7 @@
         </div>
     </section>
 
-    <!-- HELORANGE SIDFOT (FÖRBEREDD FÖR VIT LOGGA) -->
+    <!-- HELORANGE SIDFOT -->
     <footer class="site-footer">
         <div class="footer-masthead">
             <div class="footer-brand">
@@ -681,13 +683,13 @@
                 </div>
             </div>
 
-            <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top">
+            <button class="back-to-top" onclick="scrollToTop()" aria-label="Back to top">
                 ↑
             </button>
         </div>
     </footer>
 
-    <!-- SKRIPT FÖR SKROLL, FLIKAR OCH AUTOMATISK JSON-INLÄSNING -->
+    <!-- SKRIPT FÖR SKROLL, FLIKAR OCH FUNKTIONER -->
     <script>
         // Bakgrundsförstoring vid skroll
         const heroBg = document.getElementById('heroBg');
@@ -700,6 +702,14 @@
                 heroBg.style.transform = `scale(${scaleValue})`;
             }
         });
+
+        // Funktion för att skrolla mjukt till toppen
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
 
         // Funktion för att växla mellan flikar
         function switchTab(evt, paneId) {
