@@ -160,19 +160,19 @@
             text-shadow: 0 2px 8px rgba(0,0,0,0.8);
         }
 
-        /* --- INNEHÅLLSDEL MED BILDMATCHANDE GRADIENT --- */
+        /* --- INNEHÅLLSDEL SOM OVERGÅR TILL HELORANGE --- */
         .content-section {
             position: relative;
             z-index: 10;
             background: linear-gradient(to bottom, 
                 #22252a 0%, 
-                #1a120c 30%, 
-                #5e2303 65%, 
-                #a33a00 88%, 
+                #1a120c 25%, 
+                #5e2303 55%, 
+                #a33a00 80%, 
                 #ff6600 100%
             );
             padding: 120px 20px 100px 20px;
-            min-height: 120vh;
+            min-height: 100vh;
             text-align: center;
         }
 
@@ -201,6 +201,76 @@
             z-index: 3;
             color: #e0e0e0;
             font-size: 1.1rem;
+        }
+
+        /* --- HELORANGE SIDFOT (FOOTER) --- */
+        .site-footer {
+            background-color: #ff6600;
+            color: #000000;
+            padding: 40px 20px 60px 20px;
+            position: relative;
+            z-index: 10;
+            border-top: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-masthead {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-logo-box {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #ff6600;
+            background-color: #000000;
+            padding: 8px 14px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            line-height: 1;
+        }
+
+        .footer-title-group h3 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #000000;
+        }
+
+        .footer-title-group p {
+            margin: 3px 0 0 0;
+            font-size: 0.9rem;
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        .back-to-top {
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            background-color: #1a1a1a;
         }
     </style>
 </head>
@@ -235,6 +305,23 @@
         <h2>Latest news about Half-Life 3</h2>
         <p>Här kommer nyhetsflödet och uppdateringarna att ligga!</p>
     </section>
+
+    <!-- HELORANGE SIDFOT -->
+    <footer class="site-footer">
+        <div class="footer-masthead">
+            <div class="footer-brand">
+                <div class="footer-logo-box">HL3</div>
+                <div class="footer-title-group">
+                    <h3>Half-Life 3 Centre</h3>
+                    <p>News and community.</p>
+                </div>
+            </div>
+
+            <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Till toppen">
+                ↑
+            </button>
+        </div>
+    </footer>
 
     <!-- SCRIPT FÖR ATT FÖRSTORA BAKGRUNDEN VID SKROLL -->
     <script>
