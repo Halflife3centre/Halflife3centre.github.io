@@ -1,20 +1,20 @@
 [
   {
     "title": "Welcome to Half-Life 3 Centre!",
-    "content": "The site is now updated with a sleek new design, dynamic news feeds, and atmospheric color transitions.",
-    "date": "Today, 20:45",
+    "content": "This is Half-Life3 Centre, a website with news and updates about Half-Life 3. We appreciate you checking it out!",
+    "date": "Oct 16",
     "category": "hl3"
   },
   {
-    "title": "New Steam Hardware Update",
-    "content": "Valve has dropped hints regarding upcoming features in the Steam client and ecosystem.",
-    "date": "Yesterday",
+    "title": "Half-Life 3 LEAK",
+    "content": "This is how a HL3/HLX news/leak comes out here",
+    "date": "Oct,16",
+    "category": "hl3"
+  },
+  {
+    "title": "New Steam/Hardware Update",
+    "content": "This is how a Steam/ Steam Hardware uptate will look like",
+    "date": "Oct,16",
     "category": "steam"
-  },
-  {
-    "title": "The Speculation Continues",
-    "content": "No official news from Valve yet, but fans are keeping the hopium alive as usual!",
-    "date": "2 days ago",
-    "category": "hl3"
   }
 ]
