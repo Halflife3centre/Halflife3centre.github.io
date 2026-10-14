@@ -252,19 +252,28 @@
             display: block;
         }
 
+        /* Nyhetskort med stöd för kategorier (HL3 = Orange, Steam = Blå) */
         .news-card {
             background-color: rgba(0, 0, 0, 0.6);
-            border-left: 4px solid #ff6600;
             padding: 20px;
             margin-bottom: 20px;
             border-radius: 4px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            border-left: 4px solid #ff6600;
         }
 
-        .news-card h3 {
-            margin-top: 0;
+        .news-card.hl3 {
+            border-left-color: #ff6600;
+        }
+        .news-card.hl3 h3 {
             color: #ff6600;
-            font-size: 1.3rem;
+        }
+
+        .news-card.steam {
+            border-left-color: #66c0f4;
+        }
+        .news-card.steam h3 {
+            color: #66c0f4;
         }
 
         .news-card p {
@@ -492,10 +501,10 @@
             <button class="tab-btn" onclick="switchTab(event, 'x-pane')">X (Twitter)</button>
         </div>
 
-        <!-- Flik 1: Nyheter (Laddas dynamiskt från news.json) -->
+        <!-- Flik 1: Nyheter (Laddas dynamiskt från news.json med kategorialternativ) -->
         <div id="news-pane" class="tab-pane active">
             <div id="news-container">
-                <div class="news-card">
+                <div class="news-card hl3">
                     <h3>Loading news...</h3>
                     <p>Fetching the latest information from database.</p>
                 </div>
@@ -504,7 +513,7 @@
 
         <!-- Flik 2: YouTube -->
         <div id="youtube-pane" class="tab-pane">
-            <div class="news-card">
+            <div class="news-card hl3">
                 <h3>Valve News & Videos</h3>
                 <p>The latest clips and breakdowns from YouTube will appear here.</p>
                 <span class="news-date">Updates automatically</span>
@@ -513,7 +522,7 @@
 
         <!-- Flik 3: X (Twitter) -->
         <div id="x-pane" class="tab-pane">
-            <div class="news-card">
+            <div class="news-card hl3">
                 <h3>Follow @Half_Life_III on X</h3>
                 <p>Stay up to date with the latest memes and posts directly from the feed.</p>
                 <span class="news-date">Live feed</span>
@@ -690,7 +699,7 @@
         </div>
     </footer>
 
-    <!-- SKRIPT FÖR SKROLL, FLIKAR OCH FUNKTIONER -->
+    <!-- SKRIPT FÖR SKROLL, FLIKAR OCH KATEGORIER -->
     <script>
         // Bakgrundsförstoring vid skroll
         const heroBg = document.getElementById('heroBg');
@@ -714,7 +723,6 @@
                         top: 0,
                         behavior: 'smooth'
                     });
-                    // Fallback för äldre mobila enheter
                     document.documentElement.scrollTop = 0;
                     document.body.scrollTop = 0;
                 });
@@ -733,7 +741,7 @@
             evt.currentTarget.classList.add('active');
         }
 
-        // Hämta nyheter automatiskt från news.json när sidan laddas
+        // Hämta nyheter automatiskt från news.json och lägg till rätt kategori-klass
         document.addEventListener("DOMContentLoaded", () => {
             fetch('news.json')
                 .then(response => {
@@ -748,7 +756,10 @@
                     
                     data.forEach(item => {
                         const card = document.createElement('div');
-                        card.className = 'news-card';
+                        // Kolla om kategorin är steam, annars kör hl3 som standard
+                        const categoryClass = item.category === 'steam' ? 'steam' : 'hl3';
+                        card.className = `news-card ${categoryClass}`;
+                        
                         card.innerHTML = `
                             <h3>${item.title}</h3>
                             <p>${item.content}</p>
@@ -760,7 +771,7 @@
                 .catch(error => {
                     console.error('Error fetching news:', error);
                     document.getElementById('news-container').innerHTML = `
-                        <div class="news-card">
+                        <div class="news-card hl3">
                             <h3>No news found</h3>
                             <p>Could not load the news feed right now.</p>
                         </div>
