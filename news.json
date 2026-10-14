@@ -1,17 +1,20 @@
 [
   {
-    "title": "Välkommen till Half-Life 3 Centre!",
-    "content": "Sajten är nu uppdaterad med en ny läcker design, dynamiska nyhetsflöden och stämningsfulla färgövergångar.",
-    "date": "Idag, 20:45"
+    "title": "Welcome to Half-Life 3 Centre!",
+    "content": "The site is now updated with a sleek new design, dynamic news feeds, and atmospheric color transitions.",
+    "date": "Today, 20:45",
+    "category": "hl3"
   },
   {
-    "title": "Spekulationerna fortsätter",
-    "content": "Inga officiella nyheter från Valve änu, men fansen håller hopiumet vid liv som vanligt!",
-    "date": "Igår"
-   },
+    "title": "New Steam Hardware Update",
+    "content": "Valve has dropped hints regarding upcoming features in the Steam client and ecosystem.",
+    "date": "Yesterday",
+    "category": "steam"
+  },
   {
-    "title": "Gabe Newel!",
-    "content": "Love gaben för fina steam priser",
-    "date": "Igår"
+    "title": "The Speculation Continues",
+    "content": "No official news from Valve yet, but fans are keeping the hopium alive as usual!",
+    "date": "2 days ago",
+    "category": "hl3"
   }
 ]
