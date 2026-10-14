@@ -204,7 +204,7 @@
             margin-bottom: 40px;
         }
 
-        /* --- NYHETSFLIKAR (TABS) --- */
+        /* --- FILTER-FLIKAR --- */
         .tabs-container {
             position: relative;
             z-index: 3;
@@ -240,16 +240,11 @@
         }
 
         .tab-pane {
-            display: none;
             position: relative;
             z-index: 3;
             max-width: 800px;
             margin: 0 auto;
             text-align: left;
-        }
-
-        .tab-pane.active {
-            display: block;
         }
 
         /* Nyhetskort med stöd för kategorier (HL3 = Orange, Steam = Blå) */
@@ -490,42 +485,24 @@
         </div>
     </section>
 
-    <!-- NYHETSSEKTION MED FLIKAR -->
+    <!-- NYHETSSEKTION MED FILTER-FLIKAR -->
     <section class="content-section">
         <h2 class="section-title">Latest news about Half-Life 3</h2>
 
-        <!-- Flik-knappar -->
+        <!-- Filter-knappar (All / Half-Life 3 / Steam) -->
         <div class="tabs-container">
-            <button class="tab-btn active" onclick="switchTab(event, 'news-pane')">News</button>
-            <button class="tab-btn" onclick="switchTab(event, 'youtube-pane')">YouTube</button>
-            <button class="tab-btn" onclick="switchTab(event, 'x-pane')">X (Twitter)</button>
+            <button class="tab-btn active" onclick="filterNews('all', event)">All</button>
+            <button class="tab-btn" onclick="filterNews('hl3', event)">Half-Life 3</button>
+            <button class="tab-btn" onclick="filterNews('steam', event)">Steam</button>
         </div>
 
-        <!-- Flik 1: Nyheter (Laddas dynamiskt från news.json med kategorialternativ) -->
-        <div id="news-pane" class="tab-pane active">
+        <!-- Nyhetsflöde -->
+        <div id="news-pane" class="tab-pane">
             <div id="news-container">
                 <div class="news-card hl3">
                     <h3>Loading news...</h3>
                     <p>Fetching the latest information from database.</p>
                 </div>
-            </div>
-        </div>
-
-        <!-- Flik 2: YouTube -->
-        <div id="youtube-pane" class="tab-pane">
-            <div class="news-card hl3">
-                <h3>Valve News & Videos</h3>
-                <p>The latest clips and breakdowns from YouTube will appear here.</p>
-                <span class="news-date">Updates automatically</span>
-            </div>
-        </div>
-
-        <!-- Flik 3: X (Twitter) -->
-        <div id="x-pane" class="tab-pane">
-            <div class="news-card hl3">
-                <h3>Follow @Half_Life_III on X</h3>
-                <p>Stay up to date with the latest memes and posts directly from the feed.</p>
-                <span class="news-date">Live feed</span>
             </div>
         </div>
 
@@ -699,7 +676,7 @@
         </div>
     </footer>
 
-    <!-- SKRIPT FÖR SKROLL, FLIKAR OCH KATEGORIER -->
+    <!-- SKRIPT FÖR FILTERING OCH SKROLL -->
     <script>
         // Bakgrundsförstoring vid skroll
         const heroBg = document.getElementById('heroBg');
@@ -729,19 +706,10 @@
             }
         });
 
-        // Funktion för att växla mellan flikar
-        function switchTab(evt, paneId) {
-            const panes = document.querySelectorAll('.tab-pane');
-            panes.forEach(pane => pane.classList.remove('active'));
+        // Global variabel för att spara nyhetsdatan
+        let allNewsData = [];
 
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-
-            document.getElementById(paneId).classList.add('active');
-            evt.currentTarget.classList.add('active');
-        }
-
-        // Hämta nyheter automatiskt från news.json och lägg till rätt kategori-klass
+        // Hämta nyheter automatiskt från news.json vid sidladdning
         document.addEventListener("DOMContentLoaded", () => {
             fetch('news.json')
                 .then(response => {
@@ -751,22 +719,8 @@
                     return response.json();
                 })
                 .then(data => {
-                    const container = document.getElementById('news-container');
-                    container.innerHTML = ''; 
-                    
-                    data.forEach(item => {
-                        const card = document.createElement('div');
-                        // Kolla om kategorin är steam, annars kör hl3 som standard
-                        const categoryClass = item.category === 'steam' ? 'steam' : 'hl3';
-                        card.className = `news-card ${categoryClass}`;
-                        
-                        card.innerHTML = `
-                            <h3>${item.title}</h3>
-                            <p>${item.content}</p>
-                            <span class="news-date">${item.date}</span>
-                        `;
-                        container.appendChild(card);
-                    });
+                    allNewsData = data;
+                    renderNews('all'); // Visa alla nyheter som standard
                 })
                 .catch(error => {
                     console.error('Error fetching news:', error);
@@ -778,6 +732,49 @@
                     `;
                 });
         });
+
+        // Funktion för att rendera ut nyheterna baserat på vald kategori
+        function renderNews(category) {
+            const container = document.getElementById('news-container');
+            container.innerHTML = ''; 
+
+            // Filtrera datan
+            const filteredData = category === 'all' 
+                ? allNewsData 
+                : allNewsData.filter(item => (item.category || 'hl3') === category);
+
+            if (filteredData.length === 0) {
+                container.innerHTML = `
+                    <div class="news-card hl3">
+                        <h3>No news found</h3>
+                        <p>No articles available in this category yet.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filteredData.forEach(item => {
+                const card = document.createElement('div');
+                const categoryClass = item.category === 'steam' ? 'steam' : 'hl3';
+                card.className = `news-card ${categoryClass}`;
+                
+                card.innerHTML = `
+                    <h3>${item.title}</h3>
+                    <p>${item.content}</p>
+                    <span class="news-date">${item.date}</span>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Funktion för att hantera klick på filter-flikarna
+        function filterNews(category, evt) {
+            const buttons = document.querySelectorAll('.tabs-container .tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            evt.currentTarget.classList.add('active');
+
+            renderNews(category);
+        }
     </script>
 
 </body>
