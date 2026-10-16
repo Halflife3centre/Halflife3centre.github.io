@@ -1,20 +1,20 @@
 [
   {
-    "title": "Half-Life 3/Source 2 News!",
-    "content": "Check out gabe followers latest video where he talks about the active development and leaks surrounding Half-Life 3 and source 2. 🔗Link: https://youtu.be/p5MMg7sDdms?si=vqeORuV7V47pbWui",
-    "date": "February 1",
+    "title": "Welcome to Half-Life 3 Centre!",
+    "content": "This is Half-Life3 Centre, a website with news and updates about Half-Life 3. We appreciate you checking it out!",
+    "date": "Oct 16",
     "category": "hl3"
   },
   {
-    "title": "Half-Life 3 Strings Found in Deadlock!",
-    "content": "Dataminers have discovered brand new references to 'HLX' (Half-Life 3) embedded inside the Source 2 renderer files from the latest Deadlock game update.",
-    "date": "Sep, 29",
+    "title": "Half-Life 3 LEAK",
+    "content": "This is how a HL3/HLX news/leak comes out here",
+    "date": "Oct,16",
     "category": "hl3"
   },
   {
-    "title": "Steam Frame OLED 'Plano' Leak",
-    "content": "Linux kernel source code leaks reveal Valve is actively developing 'Steam Frame OLED' (codenamed Plano), featuring massive 3.5K x 3.8K MicroOLED displays per eye.",
-    "date": "Oct, 14",
+    "title": "New Steam/Hardware Update",
+    "content": "This is how a Steam/ Steam Hardware uptate will look like",
+    "date": "Oct,16",
     "category": "steam"
   }
 ]
