@@ -282,6 +282,119 @@
             color: #888888;
         }
 
+        /* --- BUNDLE SEKTION --- */
+        .bundle-container {
+            position: relative;
+            z-index: 3;
+            max-width: 1000px;
+            margin: 80px auto 40px auto;
+            background-color: rgba(15, 15, 15, 0.85);
+            border: 1px solid rgba(255, 102, 0, 0.25);
+            border-radius: 12px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            text-align: left;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .bundle-left {
+            flex: 1;
+        }
+
+        .bundle-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0 0 15px 0;
+        }
+
+        .bundle-description {
+            font-size: 1.05rem;
+            color: #cccccc;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .bundle-price {
+            font-size: 1.1rem;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .bundle-price strong {
+            color: #ff6600;
+        }
+
+        .bundle-note {
+            font-size: 0.85rem;
+            color: #888888;
+            font-style: italic;
+            margin-bottom: 25px;
+        }
+
+        /* Blå Steam-knapp enligt bilden */
+        .steam-blue-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #2b7cd3 0%, #1d5ca8 100%);
+            color: #ffffff;
+            border: 2px solid #000000;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            transition: all 0.2s ease;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+        }
+
+        .steam-blue-btn:hover {
+            background: linear-gradient(135deg, #3a8de8 0%, #246bc4 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(43, 124, 211, 0.4);
+        }
+
+        .steam-blue-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: #ffffff;
+        }
+
+        .bundle-right {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .bundle-img {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 850px) {
+            .bundle-container {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .bundle-right {
+                width: 100%;
+            }
+            .steam-blue-btn {
+                justify-content: center;
+                width: 100%;
+            }
+        }
+
         /* --- WHO TO FOLLOW SEKTION --- */
         .who-to-follow-container {
             position: relative;
@@ -565,6 +678,29 @@
                     <h3>Loading news...</h3>
                     <p>Fetching the latest information from database.</p>
                 </div>
+            </div>
+        </div>
+
+        <!-- BUY HALF-LIFE COMPLETE BUNDLE SEKTION -->
+        <div class="bundle-container">
+            <div class="bundle-left">
+                <h2 class="bundle-title">Buy Half-Life Complete bundle</h2>
+                <p class="bundle-description">
+                    Own a piece of gaming history. Dive into this award-winning series with the full Half-Life experience, containing both the main masterpieces and their complete expansions.
+                </p>
+                <div class="bundle-price">
+                    Price: <strong>$25.58 / €22.76*</strong>
+                </div>
+                <div class="bundle-note">
+                    *note that the game is often on sale for less
+                </div>
+                <a href="https://store.steampowered.com/bundle/231/HalfLife_Complete/" target="_blank" class="steam-blue-btn">
+                    <svg viewBox="0 0 24 24"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.008l2.861-4.142V8.91c0-2.485 2.015-4.5 4.5-4.5s4.5 2.015 4.5 4.5-2.015 4.5-4.5 4.5c-.123 0-.243-.008-.363-.02l-4.062 2.805c.012.112.025.224.025.339 0 1.834-1.486 3.32-3.32 3.32-1.486 0-2.743-.978-3.175-2.327L.38 15.651C1.722 20.5 6.134 24 11.979 24c6.627 0 12-5.373 12-12s-5.373-12-12-12z"/></svg>
+                    GET IT ON STEAM
+                </a>
+            </div>
+            <div class="bundle-right">
+                <img src="header_ratio.jpg" alt="Half-Life Complete Bundle" class="bundle-img">
             </div>
         </div>
 
